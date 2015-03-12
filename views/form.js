@@ -9,7 +9,9 @@ app.FormView = Backbone.View.extend({
   renderCreate: function() {
     var obj = {
       type: 'Create',
-      text: ''
+      attributes: {
+        text: ''
+      }
     };
     this.$el.html( this.template(obj) );
   },
@@ -26,9 +28,11 @@ app.FormView = Backbone.View.extend({
 
   submit: function(e) {
     e.preventDefault();
-    if (this.model) { // update TODO fix this. there's no this.model. update form.
-      this.model.set('text', $("input[name='text']").val());
-      this.model.save({}, {
+    var id = $(e.target).data('id');
+    if (id) {
+      var model = this.collection.get(id);
+      model.set('text', $("input[name='text']").val());
+      model.save({}, {
         success: function() {
           app.router.navigate('list', {trigger: true});
         },

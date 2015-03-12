@@ -11,12 +11,26 @@ app.TodoView = Backbone.View.extend({
   },
 
   events: {
-    'click a': 'navigate'
+    'click #edit-link': 'edit',
+    'click #delete-link': 'delete'
   },
 
-  navigate: function(e) {
+  edit: function(e) {
     e.preventDefault();
     var target = $(e.target).data('target');
     app.router.navigate(target, {trigger: true});
+  },
+
+  delete: function(e) {
+    e.preventDefault();
+    this.model.destroy({
+      success: function(model) {
+        app.todos.remove(model);
+        $(e.target).closest('li').remove();
+      },
+      error: function() {
+        alert('unable to destroy model');
+      }
+    });
   }
 });
