@@ -1,12 +1,12 @@
-console.log(app);
-
 var app = app || {};
 
 app.Router = Backbone.Router.extend({
   initialize: function() {
     app.todos = new app.Todos();
-    // app.todosView = new app.TodosView({collection: app.todos});
-    // app.formView = new app.FormView({collection: app.todos});
+    app.todosView = new app.TodosView({collection: app.todos});
+    app.formView = new app.FormView({collection: app.todos});
+    app.navbarView = new app.NavbarView();
+    app.navbarView.render();
   },
 
   routes: {
@@ -16,13 +16,12 @@ app.Router = Backbone.Router.extend({
   },
 
   list: function() {
-    $('#container').html('working');
     app.todos.fetch();
-    app.TodosView.render();
+    app.todosView.render();
   },
 
   create: function() {
-    app.formView.render();
+    app.formView.renderCreate();
   }
 });
 

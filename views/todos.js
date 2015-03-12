@@ -3,9 +3,8 @@ var app = app || {};
 app.TodosView = Backbone.View.extend({
   el: $('#container'),
 
-  template: _.template($('#todos').html()),
-
   render: function() {
+    this.$el.html('');
     this.collection.forEach(this.addOne, this);
     return this;
   },
