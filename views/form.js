@@ -7,17 +7,17 @@ app.FormView = Backbone.View.extend({
   template: _.template( $('#form-template').html() ),
 
   renderCreate: function() {
-    var arg = {
+    var obj = {
       type: 'Create',
       text: ''
     };
-    this.$el.html( this.template(arg) );
+    this.$el.html( this.template(obj) );
   },
 
-  renderEdit: function() {
-    var arg = this.model;
-    arg.type = 'Update';
-    this.$el.html( this.template(arg) );
+  renderEdit: function(id) {
+    var obj = this.collection.get(id);
+    obj.type = 'Update';
+    this.$el.html( this.template(obj) );
   },
 
   events: {
@@ -26,7 +26,7 @@ app.FormView = Backbone.View.extend({
 
   submit: function(e) {
     e.preventDefault();
-    if (this.model) { // update
+    if (this.model) { // update TODO fix this. there's no this.model. update form.
       this.model.set('text', $("input[name='text']").val());
       this.model.save({}, {
         success: function() {

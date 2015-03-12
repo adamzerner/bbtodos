@@ -12,7 +12,12 @@ app.Router = Backbone.Router.extend({
   routes: {
     'create': 'create',
     'list': 'list',
+    'edit/:id': 'edit',
     '': 'list'
+  },
+
+  create: function() {
+    app.formView.renderCreate();
   },
 
   list: function() {
@@ -20,8 +25,8 @@ app.Router = Backbone.Router.extend({
     app.todosView.render();
   },
 
-  create: function() {
-    app.formView.renderCreate();
+  edit: function(id) {
+    app.formView.renderEdit(id);
   }
 });
 

@@ -14,6 +14,7 @@ app.NavbarView = Backbone.View.extend({
   },
 
   navigate: function(e) {
+    e.preventDefault();
     var route = $(e.target).data('target');
     app.router.navigate(route, {trigger: true});
   }
