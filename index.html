@@ -17,6 +17,8 @@
   <script type='text/template' id='todo-template'>
     <p>
       <%= text %> | 
+      <input type='checkbox'
+        <% if (checked) { %>checked<% } %> > | 
       <a id='edit-link' data-target='edit/<%= id %>' href=''>Edit</a> | 
       <a id='delete-link' href=''>Delete</a>
     </p>

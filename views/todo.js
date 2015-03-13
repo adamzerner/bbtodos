@@ -12,7 +12,8 @@ app.TodoView = Backbone.View.extend({
 
   events: {
     'click #edit-link': 'edit',
-    'click #delete-link': 'delete'
+    'click #delete-link': 'delete',
+    'click input[type="checkbox"]': 'check'
   },
 
   edit: function(e) {
@@ -32,5 +33,9 @@ app.TodoView = Backbone.View.extend({
         alert('unable to destroy model');
       }
     });
+  },
+
+  check: function(e) {
+    this.model.save({'checked': true});
   }
 });
