@@ -8,6 +8,20 @@ app.Router = Backbone.Router.extend({
     app.formView = new app.FormView({collection: app.todos});
     app.navbarView = new app.NavbarView();
     app.navbarView.render();
+    this.on('route', function(route) {
+      if (route === 'create') {
+        $('#list-nav-li').removeClass('active');
+        $('#create-nav-li').addClass('active');
+      }
+      else if (route === 'list') {
+        $('#create-nav-li').removeClass('active');
+        $('#list-nav-li').addClass('active');
+      }
+      else {
+        $('#list-nav-li').removeClass('active');
+        $('#create-nav-li').removeClass('active');
+      }
+    });
   },
 
   routes: {
