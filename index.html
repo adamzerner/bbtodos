@@ -34,7 +34,9 @@
 
   <script type='text/template' id='todo-template'>
     <%= get('text') %> | 
-    <input type='checkbox'
+    <input 
+      type='checkbox' 
+      data-id='<%= get("id") %>'
       <% if (get('checked')) { %>checked<% } %>
     > | 
     <a data-target='edit/<%= get("id") %>'>Edit</a> | 
