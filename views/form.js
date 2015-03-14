@@ -49,7 +49,7 @@ app.FormView = Backbone.View.extend({
         error: function() {
           alert('Unable to update todo');
         }
-      })
+      });
     }
   }
 });
