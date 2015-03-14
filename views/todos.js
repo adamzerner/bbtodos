@@ -1,16 +1,14 @@
 var app = app || {};
 
 app.TodosView = Backbone.View.extend({
-  el: $('#container'),
+  el: $('#main'),
 
   render: function() {
-    this.$el.html('');
-    this.collection.forEach(this.addOne, this);
-    return this;
-  },
-
-  addOne: function(todoModelInstance) {
-    var todoViewInstance = new app.TodoView({model: todoModelInstance});
-    this.$el.append( todoViewInstance.render().el );
+    var self = this;
+    this.$el.html('<ul></ul>');
+    app.todos.forEach(function(todoModelInstance){
+      var todoViewInstance = new app.TodoView({model: todoModelInstance});
+      self.$el.find('ul').append(todoViewInstance.render().el);
+    });
   }
 });

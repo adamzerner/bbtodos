@@ -6,36 +6,19 @@ app.TodoView = Backbone.View.extend({
   template: _.template( $('#todo-template').html() ),
 
   render: function() {
-    this.$el.html( this.template(this.model.toJSON()) );
+    this.$el.html( this.template(this.model) );
     return this;
   },
 
   events: {
-    'click #edit-link': 'edit',
-    'click #delete-link': 'delete',
     'click input[type="checkbox"]': 'check'
   },
 
-  edit: function(e) {
-    e.preventDefault();
-    var target = $(e.target).data('target');
-    app.router.navigate(target, {trigger: true});
-  },
-
-  delete: function(e) {
-    e.preventDefault();
-    this.model.destroy({
-      success: function(model) {
-        app.todos.remove(model);
-        $(e.target).closest('li').remove();
-      },
-      error: function() {
-        alert('unable to destroy model');
-      }
-    });
-  },
-
   check: function(e) {
-    this.model.save({'checked': true});
+    var id = $(e.target).data('id');
+    var model = app.todos.get(id);
+    model.save({
+      checked: !model.get('checked')
+    });
   }
 });

@@ -2,37 +2,27 @@ var app = app || {};
 
 app.Router = Backbone.Router.extend({
   initialize: function() {
+    app.todo = new app.Todo();
     app.todos = new app.Todos();
     app.todos.fetch();
-    app.todosView = new app.TodosView({collection: app.todos});
-    app.formView = new app.FormView({collection: app.todos});
-    app.navbarView = new app.NavbarView();
-    app.navbarView.render();
-    this.on('route', function(route) {
-      if (route === 'create') {
-        $('#list-nav-li').removeClass('active');
-        $('#create-nav-li').addClass('active');
-      }
-      else if (route === 'list') {
-        $('#create-nav-li').removeClass('active');
-        $('#list-nav-li').addClass('active');
-      }
-      else {
-        $('#list-nav-li').removeClass('active');
-        $('#create-nav-li').removeClass('active');
-      }
+    app.todoView = new app.TodoView();
+    app.todosView = new app.TodosView();
+    app.formView = new app.FormView();
+
+    $('a').css('cursor', 'pointer');
+  
+    $(document).on('click', 'a:not([data-bypass])', function(e) {
+      e.preventDefault();
+      var route = $(this).data('target');
+      app.router.navigate(route, {trigger: true});
     });
   },
 
   routes: {
-    'create': 'create',
     'list': 'list',
+    'create': 'create',
     'edit/:id': 'edit',
     '': 'list'
-  },
-
-  create: function() {
-    app.formView.renderCreate();
   },
 
   list: function() {
@@ -40,12 +30,16 @@ app.Router = Backbone.Router.extend({
     app.todosView.render();
   },
 
+  create: function() {
+    app.formView.renderCreate();
+  },
+
   edit: function(id) {
     app.formView.renderEdit(id);
   }
 });
 
-app.router = new app.Router();
 $(document).ready(function() {
+  app.router = new app.Router();
   Backbone.history.start();
 });
