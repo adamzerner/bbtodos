@@ -13,6 +13,21 @@ app.Router = Backbone.Router.extend({
       var route = $(this).data('target');
       app.router.navigate(route, {trigger: true});
     });
+
+    this.on('route', function(route) {
+      if (route === 'list') {
+        $('#create-nav').removeClass('active');
+        $('#list-nav').addClass('active');
+      }
+      else if (route === 'create') {
+        $('#list-nav').removeClass('active');
+        $('#create-nav').addClass('active');
+      }
+      else {
+        $('#list-nav').removeClass('active');
+        $('#create-nav').removeClass('active');
+      }
+    });
   },
 
   routes: {

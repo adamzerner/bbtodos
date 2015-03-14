@@ -17,7 +17,7 @@ app.TodoView = Backbone.View.extend({
 
   delete: function(e) {
     e.preventDefault();
-    $el = $(e.target);
+    var $el = $(e.target);
     var id = $el.data('id');
     var model = app.todos.get(id);
     model.destroy({
