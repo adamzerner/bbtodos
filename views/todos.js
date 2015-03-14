@@ -4,11 +4,11 @@ app.TodosView = Backbone.View.extend({
   el: $('#main'),
 
   render: function() {
-    this.$el.html('<ul></ul>');
+    var self = this;
+    this.$el.html( $('#todos-template').html() );
     app.todos.forEach(function(todoModelInstance) {
       var todoViewInstance = new app.TodoView({model: todoModelInstance});
-      this.$el.find('ul').append( todoViewInstance.render().el );
+      self.$el.find('ul').append( todoViewInstance.render().el );
     });
-    return this;
   }
 });

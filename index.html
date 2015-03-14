@@ -9,6 +9,7 @@
   <script src='//cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.16/backbone.localStorage-min.js'></script>
   <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css' rel='stylesheet'>
   <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
+  <link href='app.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -23,16 +24,45 @@
 
   <div id='main' class='container'></div>
 
+  <script type='text/template' id='todos-template'>
+    <div class='page-header'>
+      <h1>Todos</h1>
+    </div>
+
+    <ul></ul>
+  </script>
+
   <script type='text/template' id='todo-template'>
-    <h1>Todo Template</h1>
+    <%= get('text') %> | 
+    <input type='checkbox'
+      <% if (get('checked')) { %>checked<% } %>
+    > | 
+    <a data-target='edit/<%= get("id") %>'>Edit</a> | 
+    <a data-bypass id='delete-todo' data-id='<%= get("id") %>'>Delete</a>
   </script>
 
   <script type='text/template' id='form-template'>
+    <div class='page-header'>
+      <h1><%= type %> Todo</h1>
+    </div>
 
+    <form data-type='<%= type %>'
+      <% if (type === 'Update') { %>data-id='<%= get("id") %>'<% } %>
+    >
+      <div class='form-group'>
+        <label>Text</label>
+        <input class='form-control'
+          <% if (type === 'Update') { %> value='<%= get("text") %>' <% } %>
+        >
+      </div>
+      <button class='btn btn-default'>
+        <%= type %> Todo
+      </button>
+    </form>
   </script>
 
-  <script src='collections/todos.js'></script>
   <script src='models/todo.js'></script>
+  <script src='collections/todos.js'></script>
   <script src='views/form.js'></script>
   <script src='views/todo.js'></script>
   <script src='views/todos.js'></script>
