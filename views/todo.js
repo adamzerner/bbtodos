@@ -11,12 +11,13 @@ app.TodoView = Backbone.View.extend({
   },
 
   events: {
-    'click #delete-todo': 'delete'
+    'click #delete-todo': 'delete',
+    'change input[type="checkbox"]': 'check'
   },
 
   delete: function(e) {
     e.preventDefault();
-    $el = $(e.target);
+    var $el = $(e.target);
     var id = $el.data('id');
     var model = app.todos.get(id);
     model.destroy({
@@ -28,5 +29,13 @@ app.TodoView = Backbone.View.extend({
         alert('Unable to delete todo');
       }
     })
+  },
+
+  check: function(e) {
+    var id = $(e.target).data('id');
+    var model = app.todos.get(id);
+    model.save({
+      checked: !model.get('checked')
+    });
   }
 });

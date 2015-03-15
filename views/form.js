@@ -23,7 +23,7 @@ app.FormView = Backbone.View.extend({
 
   submit: function(e) {
     e.preventDefault();
-    $el = $(e.target);
+    var $el = $(e.target);
     var type = $el.data('type');
     if (type === 'Create') {
       app.todos.create({
