@@ -21,7 +21,9 @@
       <h1><%= type %> Todo</h1>
     </div>
 
-    <form data-type='<%= type %>' data-id='<%= get("id") %>'>
+    <form data-type='<%= type %>' 
+      <% if (type === 'Update') { %>data-id='<%= get("id") %>'<% } %>
+    >
       <div class='form-group'>
         <label>Text</label>
         <input class='form-control'
