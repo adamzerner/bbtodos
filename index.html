@@ -36,10 +36,17 @@
     <div class='page-header'>
       <h1>Todo List</h1>
     </div>
+
+    <ul></ul>
   </script>
 
   <script type='text/template' id='todo-template'>
-
+    <%= get('text') %> | 
+    <input type='checkbox'
+      <% if (get('checked')) { %>checked<% } %>
+    > | 
+    <a data-target='edit/<%= get("id") %>'>Edit</a> | 
+    <a data-bypass id='delete-todo' data-id='<%= get("id") %>'>Delete</a>
   </script>
 
   <nav class='navbar navbar-default'>
