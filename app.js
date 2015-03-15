@@ -39,7 +39,7 @@ app.Router = Backbone.Router.extend({
   },
 
   edit: function(id) {
-
+    app.formView.renderEdit(id);
   }
 });
 
