@@ -2,7 +2,10 @@ var app = app || {};
 
 app.Router = Backbone.Router.extend({
   initialize: function() {
-
+    app.todos = new app.Todos();
+    app.todosView = new app.TodosView();
+    app.formView = new app.FormView();
+    app.formView.render();
   },
 
   routes: {
@@ -13,7 +16,7 @@ app.Router = Backbone.Router.extend({
   },
 
   all: function() {
-
+    app.todosView.render();
   },
 
   active: function() {
@@ -21,8 +24,14 @@ app.Router = Backbone.Router.extend({
   },
 
   completed: function() {
-    
+
   }
+});
+
+$(document).on('click', 'a:not([data-bypass])', function(e) {
+  e.preventDefault();
+  var route = $(e.target).data('target');
+  app.router.navigate(route, {trigger: true});
 });
 
 $(document).ready(function() {
