@@ -23,7 +23,7 @@
                 $el.val('');
                 $el.blur(); // removes focus
                 var viewInstance = new app.TodoView({model: model});
-                $('#todos').append( viewInstance.render().el );
+                $('#todos ul').append( viewInstance.render().el );
               },
               error: function() {
                 console.log('Unable to create todo');
