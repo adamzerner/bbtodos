@@ -13,7 +13,7 @@
 
       submit: function(e) {
         if (e.which === 13) {
-          $el = $(e.target);
+          var $el = $(e.currentTarget);
           app.todos.create(
             {
               title: $el.val()

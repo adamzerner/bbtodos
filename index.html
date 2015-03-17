@@ -32,20 +32,20 @@
     <input>
   </script>
 
-  <script type='text/template' id='todo-template'>
-    <div class='view-mode'>
-      <input 
-        type='checkbox'
-        data-id='<%= id %>'
-        <% if (completed) { %>checked<% } %>
-      >
-      <%= title %>
-      <a data-bypass class='remove-todo' data-id='<%= id %>'>&times;</a>
-    </div>
-    <div class='edit-mode'>
-      <p>Edit Mode</p>
-    </div>
-  </script>
+    <script type='text/template' id='todo-template'>
+      <div class='view-mode'>
+        <input 
+          type='checkbox'
+          data-id='<%= id %>'
+          <% if (completed) { %>checked<% } %>
+        >
+        <span class='todo-title'><%= title %></span>
+        <a data-bypass class='remove-todo' data-id='<%= id %>'>&times;</a>
+      </div>
+      <div class='edit-mode'>
+        <input class='edit-todo'>
+      </div>
+    </script>
 
   <!-- scripts -->
   <script src='models/todo.js'></script>
