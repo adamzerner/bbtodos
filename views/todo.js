@@ -14,9 +14,18 @@ app.TodoView = Backbone.View.extend({
   },
 
   events: {
+    'click input[type="checkbox"]': 'check',
     'mouseenter': 'showRemove',
     'mouseleave': 'hideRemove',
     'click .remove-todo': 'remove'
+  },
+
+  check: function(e) {
+    var id = $(e.target).data('id');
+    var model = app.todos.get(id);
+    model.save({
+      completed: true
+    });
   },
 
   showRemove: function(e) {
