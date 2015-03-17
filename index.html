@@ -36,14 +36,13 @@
       <div class='view-mode'>
         <input 
           type='checkbox'
-          data-id='<%= id %>'
           <% if (completed) { %>checked<% } %>
         >
         <span class='todo-title'><%= title %></span>
-        <a data-bypass class='remove-todo' data-id='<%= id %>'>&times;</a>
+        <a data-bypass class='remove-todo'>&times;</a>
       </div>
       <div class='edit-mode'>
-        <input class='edit-todo' data-id='<%= id %>'>
+        <input class='edit-todo'>
       </div>
     </script>
 
