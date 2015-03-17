@@ -7,6 +7,25 @@ app.Router = Backbone.Router.extend({
     app.todosView = new app.TodosView();
     app.formView = new app.FormView();
     app.formView.render();
+    app.footerView = new app.FooterView({collection: app.todos});
+    app.footerView.render();
+    this.on('route', function(route) {
+      if (route === 'all') {
+        $('.nav-pills li').removeClass('active');
+        $('#nav-all').addClass('active');
+      }
+      else if (route === 'active') {
+        $('.nav-pills li').removeClass('active');
+        $('#nav-active').addClass('active');
+      }
+      else if (route === 'completed') {
+        $('.nav-pills li').removeClass('active');
+        $('#nav-completed').addClass('active');
+      }
+      else {
+        $('.nav-pills li').removeClass('active');
+      }
+    });
   },
 
   routes: {

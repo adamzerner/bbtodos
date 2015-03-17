@@ -21,30 +21,40 @@
     <div class='page-header'>
       <h1>Todos</h1>
     </div>
-
     <div id='create'></div><br />
     <div id='todos'>
       <ul class='list-group'></ul>
     </div>
+    <hr />
+    <footer></footer>
   </div>
 
   <script type='text/template' id='form-template'>
     <input class='form-control'>
   </script>
 
-    <script type='text/template' id='todo-template'>
-      <div class='view-mode'>
-        <input 
-          type='checkbox'
-          <% if (completed) { %>checked<% } %>
-        >
-        <span class='todo-title'><%= title %></span>
-        <a data-bypass class='remove-todo'>&times;</a>
-      </div>
-      <div class='edit-mode'>
-        <input class='edit-todo' value='<%= title %>'>
-      </div>
-    </script>
+  <script type='text/template' id='todo-template'>
+    <div class='view-mode'>
+      <input 
+        type='checkbox'
+        <% if (completed) { %>checked<% } %>
+      >
+      <span class='todo-title'><%= title %></span>
+      <a data-bypass class='remove-todo'>&times;</a>
+    </div>
+    <div class='edit-mode'>
+      <input class='edit-todo' value='<%= title %>'>
+    </div>
+  </script>
+
+  <script type='text/template' id='footer-template'>
+    x todos left 
+    <ul class="nav nav-pills">
+      <li id='nav-all'><a data-target='all'>All</a></li>
+      <li id='nav-active'><a data-target='active'>Active</a></li>
+      <li id='nav-completed'><a data-target='completed'>Completed</a></li>
+    </ul>
+  </script>
 
   <!-- scripts -->
   <script src='models/todo.js'></script>
@@ -52,6 +62,7 @@
   <script src='views/form.js'></script>
   <script src='views/todo.js'></script>
   <script src='views/todos.js'></script>
+  <script src='views/footer.js'></script>
   <script src='app.js'></script>
 </body>
 
