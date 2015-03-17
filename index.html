@@ -33,13 +33,18 @@
   </script>
 
   <script type='text/template' id='todo-template'>
-    <input 
-      type='checkbox'
-      data-id='<%= id %>'
-      <% if (completed) { %>checked<% } %>
-    >
-    <%= title %>
-    <a data-bypass class='remove-todo' data-id='<%= id %>'>&times;</a>
+    <div class='view-mode'>
+      <input 
+        type='checkbox'
+        data-id='<%= id %>'
+        <% if (completed) { %>checked<% } %>
+      >
+      <%= title %>
+      <a data-bypass class='remove-todo' data-id='<%= id %>'>&times;</a>
+    </div>
+    <div class='edit-mode'>
+      <p>Edit Mode</p>
+    </div>
   </script>
 
   <!-- scripts -->

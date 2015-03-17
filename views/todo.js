@@ -9,6 +9,7 @@ app.TodoView = Backbone.View.extend({
 
   render: function() {
     this.$el.html( this.template(this.model.toJSON()) );
+    this.$el.find('.edit-mode').hide();
     this.$el.find('.remove-todo').hide();
     return this;
   },
@@ -17,7 +18,8 @@ app.TodoView = Backbone.View.extend({
     'click input[type="checkbox"]': 'check',
     'mouseenter': 'showRemove',
     'mouseleave': 'hideRemove',
-    'click .remove-todo': 'remove'
+    'click .remove-todo': 'remove',
+    'dblclick': 'makeEditable'
   },
 
   check: function(e) {
@@ -49,5 +51,11 @@ app.TodoView = Backbone.View.extend({
         alert('Unable to remove todo.');
       }
     });
+  },
+
+  makeEditable: function(e) {
+    console.log($(e.target).html());
+    $(e.target).find('.view-mode').hide();
+    $(e.target).find('.edit-mode').show();
   }
 });
