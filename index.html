@@ -23,22 +23,23 @@
     </div>
 
     <div id='create'></div>
-    <div id='todos'></div>
+    <div id='todos'>
+      <ul class='list-group'></ul>
+    </div>
   </div>
 
   <script type='text/template' id='form-template'>
     <input>
   </script>
 
-  <script type='text/tempalte' id='todo-template'>
-    <%= title %> | 
+  <script type='text/template' id='todo-template'>
     <input 
       type='checkbox'
       data-id='<%= id %>'
       <% if (completed) { %>checked<% } %>
-    > | 
-    <a data-target=''>Edit</a> | 
-    <a data-bypass class='delete-todo' data-id='<%= id %>'>Delete</a>
+    >
+    <%= title %>
+    <a data-bypass class='remove-todo' data-id='<%= id %>'>&times;</a>
   </script>
 
   <!-- scripts -->

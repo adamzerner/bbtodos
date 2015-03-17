@@ -1,0 +1,11 @@
+.container {
+  width: 40%;
+}
+
+a {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}

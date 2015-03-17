@@ -3,6 +3,7 @@ var app = app || {};
 app.Router = Backbone.Router.extend({
   initialize: function() {
     app.todos = new app.Todos();
+    app.todos.fetch();
     app.todosView = new app.TodosView();
     app.formView = new app.FormView();
     app.formView.render();
