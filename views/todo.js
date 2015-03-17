@@ -85,7 +85,7 @@ app.TodoView = Backbone.View.extend({
       var self = this;
       var $input = this.$el.find('.edit-todo');
       var newTitle = $input.val();
-      if (newTitle !== this.model.get('title')) {
+      if (newTitle && newTitle !== this.model.get('title')) {
         this.model.save({
           title: newTitle
         }, {
