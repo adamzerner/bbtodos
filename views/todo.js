@@ -57,8 +57,8 @@
 
       showEditMode: function(e) {
         var $el = $(e.currentTarget);
-        $el.closest('.view-mode').hide();
         var $editMode = $el.closest('li').find('.edit-mode');
+        $el.closest('.view-mode').hide();
         $editMode.show();
         $editMode.find('.edit-todo').focus();
       },
@@ -66,14 +66,42 @@
       update: function(e) {
         if (e.which === 13 || e.which === 27) {
           var $el = $(e.currentTarget);
-          $el.closest('.edit-mode').hide();
-          $el.closest('li').find('.view-mode').show();
+          var id = $el.data('id');
+          var model = app.todos.get(id);
+          model.save({
+            title: $el.val()
+          }, {
+            success: function(model) {
+              var $viewMode = $el.closest('li').find('.view-mode');
+              $el.closest('.edit-mode').hide();
+              $viewMode.show();
+              var newTitle = model.get('title');
+              $viewMode.find('.todo-title').text(newTitle);
+            },
+            error: function() {
+              alert('Unable to update todo');
+            }
+          });
         }
       },
 
       close: function(e) {
         var $el = $(e.currentTarget);
-        $el.closest('.edit-mode').hide();
-        $el.closest('li').find('.view-mode').show();
+        var id = $el.data('id');
+        var model = app.todos.get(id);
+        model.save({
+          title: $el.val()
+        }, {
+          success: function(model) {
+            var $viewMode = $el.closest('li').find('.view-mode');
+            $el.closest('.edit-mode').hide();
+            $viewMode.show();
+            var newTitle = model.get('title');
+            $viewMode.find('.todo-title').text(newTitle);
+          },
+          error: function() {
+            alert('Unable to update todo');
+          }
+        });
       }
     });
