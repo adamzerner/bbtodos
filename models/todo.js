@@ -2,7 +2,6 @@ var app = app || {};
 
 app.Todo = Backbone.Model.extend({
   // title: string
-  // order: number
   // completed: boolean
   validate: function(attrs) {
     if (typeof attrs.title === 'undefined') return 'A title is required.';
@@ -18,6 +17,10 @@ app.Todo = Backbone.Model.extend({
   initialize: function() {
     this.on('invalid', function(model, error) {
       console.log(error);
+    });
+    this.on('change:completed', function() {
+      console.log('in change:completed');
+      app.todos.updateTodosLeft();
     });
   }
 });

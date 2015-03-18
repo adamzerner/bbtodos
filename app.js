@@ -4,19 +4,17 @@ app.Router = Backbone.Router.extend({
   initialize: function() {
     app.todos = new app.Todos();
     app.todos.fetch();
-    app.todosView = new app.TodosView();
     app.formView = new app.FormView();
     app.formView.render();
-    app.footerView = new app.FooterView({collection: app.todos});
-    app.footerView.render();
+    app.todos.updateTodosLeft();
     this.on('route', function(route) {
       if (route === 'all') {
         $('.nav-pills li').removeClass('active');
         $('#nav-all').addClass('active');
       }
-      else if (route === 'active') {
+      else if (route === 'remaining') {
         $('.nav-pills li').removeClass('active');
-        $('#nav-active').addClass('active');
+        $('#nav-remaining').addClass('active');
       }
       else if (route === 'completed') {
         $('.nav-pills li').removeClass('active');
@@ -30,21 +28,26 @@ app.Router = Backbone.Router.extend({
 
   routes: {
     'all': 'all',
-    'active': 'active',
+    'remaining': 'remaining',
     'completed': 'completed',
     '': 'all'
   },
 
   all: function() {
-    app.todosView.render();
+    app.allTodosView = new app.TodosView({collection: app.todos});
+    app.allTodosView.render();
   },
 
-  active: function() {
-
+  remaining: function() {
+    var remainingTodos = app.todos.getRemaining();
+    app.remainingTodosView = new app.TodosView({collection: remainingTodos});
+    app.remainingTodosView.render();
   },
 
   completed: function() {
-
+    var completedTodos = app.todos.getCompleted();
+    app.completedTodosView = new app.TodosView({collection: completedTodos});
+    app.completedTodosView.render();
   }
 });
 

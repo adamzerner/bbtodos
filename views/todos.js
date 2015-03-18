@@ -6,7 +6,7 @@ app.TodosView = Backbone.View.extend({
   render: function() {
     var self = this;
     this.$el.html('');
-    app.todos.forEach(function(todoModelInstance) {
+    this.collection.forEach(function(todoModelInstance) {
       var todoViewInstance = new app.TodoView({model: todoModelInstance});
       self.$el.append( todoViewInstance.render().el );
     });

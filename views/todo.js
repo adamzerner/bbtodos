@@ -30,8 +30,9 @@ app.TodoView = Backbone.View.extend({
   },
 
   check: function(e) {
-    this.model.save({
-      completed: true
+    var model = this.model;
+    model.save({
+      completed: !model.get('completed')
     });
   },
 

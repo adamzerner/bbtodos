@@ -20,10 +20,15 @@ app.FormView = Backbone.View.extend({
         }, 
         {
           success: function(model) {
-            $el.val('');
-            $el.blur(); // removes focus
-            var viewInstance = new app.TodoView({model: model});
-            $('#todos ul').append( viewInstance.render().el );
+            if (Backbone.history.fragment === 'all' || Backbone.history.fragment === '') {
+              $el.val('');
+              $el.blur(); // removes focus
+              var viewInstance = new app.TodoView({model: model});
+              $('#todos ul').append( viewInstance.render().el );
+            }
+            else {
+              app.router.navigate('all', {trigger: true});
+            }
           },
           error: function() {
             console.log('Unable to create todo');
