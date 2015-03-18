@@ -25,9 +25,12 @@
     <div id='todos'>
       <ul class='list-group'></ul>
     </div>
-    <hr />
     <footer>
-      <span id='numLeft'>x</span> todos remaining 
+      <p>
+        <span id='numLeft'>x</span> todos remaining | 
+        <a data-bypass id='clear-completed'>clear completed</a>
+      </p>
+      <hr />
       <ul class="nav nav-pills">
         <li id='nav-all'><a data-target='all'>All</a></li>
         <li id='nav-remaining'><a data-target='remaining'>Remaining</a></li>

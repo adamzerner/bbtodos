@@ -19,7 +19,6 @@ app.Todo = Backbone.Model.extend({
       console.log(error);
     });
     this.on('change:completed', function() {
-      console.log('in change:completed');
       app.todos.updateTodosLeft();
     });
   }

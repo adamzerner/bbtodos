@@ -9,10 +9,3 @@ a {
 .hidden {
   display: none;
 }
-
-.nav-pills {
-  width: 50%;
-  margin: 0 auto;
-  position: relative;
-  bottom: 25px;
-}

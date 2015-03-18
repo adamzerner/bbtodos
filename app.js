@@ -57,6 +57,16 @@ $(document).on('click', 'a:not([data-bypass])', function(e) {
   app.router.navigate(route, {trigger: true});
 });
 
+$('#clear-completed').click(function() {
+  app.todos.clearCompleted();
+  if (Backbone.history.fragment !== 'all') {
+    app.router.navigate('all', {trigger: true});
+  }
+  else {
+    app.allTodosView.render();
+  }
+});
+
 $(document).ready(function() {
   app.router = new app.Router();
   Backbone.history.start();
