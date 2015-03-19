@@ -4,6 +4,7 @@ app.Router = Backbone.Router.extend({
   initialize: function() {
     app.todos = new app.Todos();
     app.todos.fetch();
+    $('#todos-remaining').text(app.todos.getRemaining().length);
     app.formView = new app.FormView();
     app.formView.render();
     this.on('route', function(route) {

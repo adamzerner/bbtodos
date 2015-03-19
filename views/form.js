@@ -20,9 +20,15 @@ app.FormView = Backbone.View.extend({
       app.todos.create({
         title: title
       }, {
-        success: function() {
+        success: function(model) {
           $input.val('');
-          app.router.navigate('all', {trigger: true});
+          if (Backbone.history.fragment === 'all' || Backbone.history.fragment === '') {
+            var todoViewInstance = new app.TodoView({model: model});
+            $('#todos-area .list-group').append(todoViewInstance.render().el);
+          }
+          else {
+            app.router.navigate('all', {trigger: true});
+          }
         },
         error: function() {
           console.log('in error');
