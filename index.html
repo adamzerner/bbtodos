@@ -3,16 +3,12 @@
 
 <head>
   <title>bbtodos</title>
-
-  <!-- cdns -->
   <script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore.js'></script>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js'></script>
   <script src='//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js'></script>
   <script src='//cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.16/backbone.localStorage-min.js'></script>
   <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet'>
   <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
-
-  <!-- mine -->
   <link href='app.css' rel='stylesheet'>
 </head>
 
@@ -21,43 +17,23 @@
     <div class='page-header'>
       <h1>Todos</h1>
     </div>
-    <div id='create'></div><br />
-    <div id='todos'>
+    <div id='form-area'></div>
+    <div id='todos-area'>
       <ul class='list-group'></ul>
     </div>
-    <footer>
-      <p>
-        <span id='numLeft'>x</span> todos remaining | 
-        <a data-bypass id='clear-completed'>clear completed</a>
-      </p>
-      <hr />
-      <ul class="nav nav-pills">
-        <li id='nav-all'><a data-target='all'>All</a></li>
-        <li id='nav-remaining'><a data-target='remaining'>Remaining</a></li>
-        <li id='nav-completed'><a data-target='completed'>Completed</a></li>
-      </ul>
-    </footer>
+    <footer></footer>
   </div>
 
+  <!-- templates -->
   <script type='text/template' id='form-template'>
     <input class='form-control'>
   </script>
 
   <script type='text/template' id='todo-template'>
-    <div class='view-mode'>
-      <input 
-        type='checkbox'
-        <% if (completed) { %>checked<% } %>
-      >
-      <span class='todo-title'><%= title %></span>
-      <a data-bypass class='remove-todo'>&times;</a>
-    </div>
-    <div class='edit-mode'>
-      <input class='edit-todo' value='<%= title %>'>
-    </div>
+    <p>test</p>
   </script>
 
-  <!-- scripts -->
+  <!-- files -->
   <script src='models/todo.js'></script>
   <script src='collections/todos.js'></script>
   <script src='views/form.js'></script>

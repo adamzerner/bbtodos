@@ -1,43 +1,31 @@
 var app = app || {};
 
 app.FormView = Backbone.View.extend({
-  el: $('#create'),
+  el: $('#form-area'),
+
+  template: _.template( $('#form-template').html() ),
 
   render: function() {
-    this.$el.html( $('#form-template').html() );
+    this.$el.html( this.template() );
   },
 
   events: {
-    'keypress input': 'submit'
+    'keyup input': 'submitOnEnter'
   },
 
-  submit: function(e) {
-    if (e.which === 13) {
-      var $el = $(e.currentTarget);
-      app.todos.create(
-        {
-          title: $el.val()
-        }, 
-        {
-          success: function(model) {
-            if (Backbone.history.fragment === 'all' || Backbone.history.fragment === '') {
-              $el.val('');
-              $el.blur(); // removes focus
-              var viewInstance = new app.TodoView({model: model});
-              $('#todos ul').append( viewInstance.render().el );
-            }
-            else {
-              app.router.navigate('all', {trigger: true});
-            }
-          },
-          error: function() {
-            console.log('Unable to create todo');
-          }
+  submitOnEnter: function(e) {
+    if (e.keyCode === 13) {
+      var title = this.$el.find('input').val();
+      app.todos.create({
+        title: title
+      }, {
+        success: function() {
+          console.log('in success');
+        },
+        error: function() {
+          console.log('in error');
         }
-      );
+      });
     }
   }
 });
-
-// maybe later I'll refactor this and not use a BB View
-// and use jQuery to handle the submission
