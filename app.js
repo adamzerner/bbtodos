@@ -25,8 +25,8 @@ app.Router = Backbone.Router.extend({
 
   all: function() {
     app.todos.fetch();
-    var todosView = new app.TodosView({collection: app.todos});
-    todosView.render();
+    app.todosView = new app.TodosView({collection: app.todos});
+    app.todosView.render();
   },
 
   completed: function() {
@@ -46,6 +46,16 @@ $(document).on('click', 'a:not([data-bypass])', function(e) {
   e.preventDefault();
   var route = $(e.currentTarget).data('target');
   app.router.navigate(route, {trigger: true});
+});
+
+$('#clear-completed').on('click', function() {
+  app.todos.clearCompleted();
+  if (Backbone.history.fragment === 'all' || Backbone.history.fragment === '') {
+    app.todosView.render();
+  }
+  else {
+    app.router.navigate('all', {trigger: true});
+  }
 });
 
 $(document).ready(function() {

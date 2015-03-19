@@ -15,5 +15,9 @@ app.Todos = Backbone.Collection.extend({
     return this.filter(function(todo) {
       return !todo.get('completed');
     });
+  },
+
+  clearCompleted: function() {
+    _.invoke(this.getCompleted(), 'destroy');
   }
 });
