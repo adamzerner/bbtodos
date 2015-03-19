@@ -15,7 +15,8 @@ app.TodoView = Backbone.View.extend({
   events: {
     'dblclick .title': 'enterEditMode',
     'keyup .edit-input': 'keyup',
-    'blur .edit-input': 'enterViewMode'
+    'blur .edit-input': 'enterViewMode',
+    'click .delete-todo': 'delete'
   },
 
   enterEditMode: function() {
@@ -55,5 +56,15 @@ app.TodoView = Backbone.View.extend({
     var $editMode = this.$el.find('.edit-mode');
     $viewMode.show();
     $editMode.hide();
+  },
+
+  delete: function() {
+    var self = this;
+    this.model.destroy({
+      success: function(model) {
+        app.todos.remove(model);
+        self.$el.remove();
+      }
+    });
   }
 });

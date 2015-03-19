@@ -31,7 +31,9 @@
 
   <script type='text/template' id='todo-template'>
     <div class='view-mode'>
+      <input type='checkbox'> 
       <span class='title'><%= title %></span>
+      <a data-bypass class='delete-todo'>&times</a>
     </div>
     <div class='edit-mode' style='display: none;'>
       <input value='<%= title %>' class='edit-input'>
