@@ -36,7 +36,18 @@ app.TodoView = Backbone.View.extend({
   },
 
   update: function() {
-
+    var self = this;
+    var newTitle = this.$el.find('.edit-input').val();
+    this.model.save({
+      title: newTitle
+    }, {
+      success: function() {
+        self.render();
+      },
+      error: function() {
+        console.log('Unable to update model');
+      }
+    });
   },
 
   enterViewMode: function() {
