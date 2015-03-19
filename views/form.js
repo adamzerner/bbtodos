@@ -14,13 +14,20 @@ app.FormView = Backbone.View.extend({
   },
 
   submitOnEnter: function(e) {
+    var $input = this.$el.find('input');
     if (e.keyCode === 13) {
-      var title = this.$el.find('input').val();
+      var title = $input.val();
       app.todos.create({
         title: title
       }, {
         success: function() {
-          console.log('in success');
+          $input.val('');
+          if (Backbone.history.fragment === 'all' || Backbone.history.fragment === '') {
+            app.todosView.render();
+          }
+          else {
+            app.router.navigate('all', {trigger: true});
+          }
         },
         error: function() {
           console.log('in error');

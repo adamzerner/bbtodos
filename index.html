@@ -30,7 +30,12 @@
   </script>
 
   <script type='text/template' id='todo-template'>
-    <%= title %>
+    <div class='view-mode'>
+      <span class='title'><%= title %></span>
+    </div>
+    <div class='edit-mode' style='display: none;'>
+      <input value='<%= title %>' class='edit-input'>
+    </div>
   </script>
 
   <!-- files -->

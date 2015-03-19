@@ -16,6 +16,7 @@ app.Router = Backbone.Router.extend({
   },
 
   all: function() {
+    app.todos.fetch();
     app.todosView = new app.TodosView({collection: app.todos});
     app.todosView.render();
   },
