@@ -29,13 +29,15 @@ app.Router = Backbone.Router.extend({
   },
 
   completed: function() {
-    // var completedTodos = app.todos.getCompleted();
-    // var todosView = new app.TodosView({collection: completedTodos});
-    // todosView.render();
+    var completedTodos = app.todos.getCompleted();
+    var todosView = new app.TodosView({collection: completedTodos});
+    todosView.render();
   },
 
   remaining: function() {
-
+    var remainingTodos = app.todos.getRemaining();
+    var todosView = new app.TodosView({collection: remainingTodos});
+    todosView.render();
   }
 });
 
