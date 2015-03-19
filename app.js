@@ -6,6 +6,13 @@ app.Router = Backbone.Router.extend({
     app.todos.fetch();
     app.formView = new app.FormView();
     app.formView.render();
+    this.on('route', function(route) {
+      // update nav pills
+      $('.nav-pills li').removeClass('active');
+      if (route === 'all') $('#all-route').addClass('active');
+      else if (route === 'completed') $('#completed-route').addClass('active');
+      else if (route === 'remaining') $('#remaining-route').addClass('active');
+    });
   },
 
   routes: {
@@ -17,12 +24,14 @@ app.Router = Backbone.Router.extend({
 
   all: function() {
     app.todos.fetch();
-    app.todosView = new app.TodosView({collection: app.todos});
-    app.todosView.render();
+    var todosView = new app.TodosView({collection: app.todos});
+    todosView.render();
   },
 
   completed: function() {
-
+    // var completedTodos = app.todos.getCompleted();
+    // var todosView = new app.TodosView({collection: completedTodos});
+    // todosView.render();
   },
 
   remaining: function() {

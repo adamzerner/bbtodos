@@ -21,7 +21,18 @@
     <div id='todos-area'>
       <ul class='list-group'></ul>
     </div>
-    <footer></footer>
+    <footer>
+      <span>x todos remaining</span> | 
+      <a data-bypass>Clear completed</a>
+      <hr />
+      <nav>
+        <ul class='nav nav-pills'>
+          <li id='all-route'><a data-target='all'>All</a></li>
+          <li id='completed-route'><a data-target='completed'>Completed</a></li>
+          <li id='remaining-route'><a data-target='remaining'>Remaining</a></li>
+        </ul>
+      </nav>
+    </footer>
   </div>
 
   <!-- templates -->
@@ -31,7 +42,9 @@
 
   <script type='text/template' id='todo-template'>
     <div class='view-mode'>
-      <input type='checkbox'> 
+      <input type='checkbox' class='todo-checkbox'
+        <% if (completed) { %>checked<% } %>
+      > 
       <span class='title'><%= title %></span>
       <a data-bypass class='delete-todo'>&times</a>
     </div>

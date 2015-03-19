@@ -22,12 +22,7 @@ app.FormView = Backbone.View.extend({
       }, {
         success: function() {
           $input.val('');
-          if (Backbone.history.fragment === 'all' || Backbone.history.fragment === '') {
-            app.todosView.render();
-          }
-          else {
-            app.router.navigate('all', {trigger: true});
-          }
+          app.router.navigate('all', {trigger: true});
         },
         error: function() {
           console.log('in error');
